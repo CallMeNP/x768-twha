@@ -20,9 +20,9 @@ package
 
       if (lang == History.LANG_EN){
         if (yr < 0){
-          s = 'B.C. ' + (-yr);
+          s = (-yr) + ' BC';
         }else{
-          s = 'A.D. ' + yr;
+          s = 'AD ' + yr;
         }
       }else{
         if (yr < 0){

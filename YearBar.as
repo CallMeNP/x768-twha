@@ -21,7 +21,7 @@ package
     private var year_r:Number;
 
     public static const HEIGHT:int = 32;
-    public static const YEAR_NOW:int = 2012;
+    public static const YEAR_NOW:int = 2013;
 
     //--------------------------------------------------------------------------------------------//
 

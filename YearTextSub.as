@@ -811,10 +811,10 @@ package
       case History.LANG_EN:
         if (yr < 0){
           c = Math.floor((-yr-1) / 100) + 1;
-          return c + suffix(c) + ' century B.C.';
+          return c + suffix(c) + ' century BC';
         }else{
           c = Math.floor((yr-1) / 100) + 1;
-          return c + suffix(c) + ' century A.D.';
+          return c + suffix(c) + ' century';
         }
         break;
       case History.LANG_CN:
