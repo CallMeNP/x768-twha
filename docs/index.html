@@ -5,9 +5,11 @@
 <style type="text/css"> @import "style.css"; </style>
 <script type="application/x-javascript">
 
-var MAX_YEAR = 2017;
+'use strict';
 
-var data = {
+const MAX_YEAR = 2019;
+
+const data = {
 	map_x: 2500,
 	map_y: 580,
 	year: -4000,
@@ -16,23 +18,23 @@ var data = {
 };
 
 </script>
-<script type="application/x-javascript" src="js/era.js"></script>
-<script type="application/x-javascript" src="js/territory.js"></script>
-<script type="application/x-javascript" src="js/regions.js"></script>
-<script type="application/x-javascript" src="js/LangButton.js"></script>
-<script type="application/x-javascript" src="js/ZoomBar.js"></script>
-<script type="application/x-javascript" src="js/YearText.js"></script>
-<script type="application/x-javascript" src="js/YearBar.js"></script>
-<script type="application/x-javascript" src="js/Region.js"></script>
-<script type="application/x-javascript" src="js/Map.js"></script>
-<script type="application/x-javascript" src="js/twha.js"></script>
-<title>The World Historical Atras - beta</title>
+<script type="application/javascript" src="js/era.js" defer></script>
+<script type="application/javascript" src="js/territory.js" defer></script>
+<script type="application/javascript" src="js/regions.js" defer></script>
+<script type="application/javascript" src="js/LangButton.js" defer></script>
+<script type="application/javascript" src="js/ZoomBar.js" defer></script>
+<script type="application/javascript" src="js/YearText.js" defer></script>
+<script type="application/javascript" src="js/YearBar.js" defer></script>
+<script type="application/javascript" src="js/Region.js" defer></script>
+<script type="application/javascript" src="js/Map.js" defer></script>
+<script type="application/javascript" src="js/twha.js" defer></script>
+<title>The World Historical Atras</title>
 </head>
 <body>
 <div id="head">
 <div id="scale-zoom"><img src="img/thumb-v.png" id="scale-zoom-cursor" alt=""></div>
 <div class="lang-button" id="lang-ja"></div><div class="lang-button" id="lang-en"></div><div class="lang-button" id="lang-zh"></div>
-<div id="year"><span id="year-text"></span><input type="text" id="year-input" value=""></div>
+<form id="year"><span id="year-text"></span><input type="text" id="year-input" value="" autocomplete="no"></form>
 <div id="year-sub"></div>
 </div>
 <div id="layer-land"></div>

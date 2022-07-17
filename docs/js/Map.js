@@ -2,34 +2,34 @@
 
 function Map()
 {
-	var MAP_SIZE = 450;
-	var MAP_X = 8;
-	var MAP_Y = 4;
-	var SCALES = [0.5, 1, 2, 4, 8];
+	const landLayer = document.getElementById('layer-land');
+	const tertLayer = document.getElementById('layer-tert');
+	const infoLayer = document.getElementById('layer-info');
 
-	var mpLandCache = new Array(MAP_X * MAP_Y);
-	var mpTertCache = new Array(MAP_X * MAP_Y);
+	const MAP_SIZE = 450;
+	const MAP_X = 8;
+	const MAP_Y = 4;
+	const SCALES = [0.5, 1, 2, 4, 8];
+
+	const mpLandCache = new Array(MAP_X * MAP_Y);
+	const mpTertCache = new Array(MAP_X * MAP_Y);
 	// 指定した年のRegionパネル全て
-	var regions_this_year = [];
+	let regions_this_year = [];
 	// 画面上に見えているRegionパネル全て
-	var visible_regions = [];
+	let visible_regions = [];
 
-	var curWidth, curHeight;
-	var curWidth2, curHeight2;
-	var mousedown_x = 0;
-	var mousedown_y = 0;
-	var prev_zoom = data.zoom;
-	var prev_year = -9999;
-
-	var landLayer = document.getElementById('layer-land');
-	var tertLayer = document.getElementById('layer-tert');
-	var infoLayer = document.getElementById('layer-info');
+	let curWidth, curHeight;
+	let curWidth2, curHeight2;
+	let mousedown_x = 0;
+	let mousedown_y = 0;
+	let prev_zoom = data.zoom;
+	let prev_year = -9999;
 
 
 	function getMapLandPart(i, j)
 	{
-		var idx = i + j * MAP_X;
-		var ld = mpLandCache[idx];
+		let idx = i + j * MAP_X;
+		let ld = mpLandCache[idx];
 		if (!ld){
 			ld = document.createElement('img');
 			ld.setAttribute('alt', '');
@@ -40,10 +40,10 @@ function Map()
 	}
 	function getMapTertYear(year, i, j)
 	{
-		var a = territory[i][j];
-		var lb = 0, ub = a.length;
+		let a = territory[i][j];
+		let lb = 0, ub = a.length;
 		while (lb < ub) {
-			var m = Math.floor((lb + ub) / 2);
+			let m = Math.floor((lb + ub) / 2);
 			if (year >= a[m]) {
 				if (m + 1 == ub || year < a[m + 1]) {
 					return a[m];
@@ -57,8 +57,8 @@ function Map()
 	}
 	function getMapTertPart(i, j)
 	{
-		var idx = i + j * MAP_X;
-		var mp = mpTertCache[idx];
+		let idx = i + j * MAP_X;
+		let mp = mpTertCache[idx];
 		if (!mp){
 			mp = document.createElement('img');
 			mp.setAttribute('alt', '');
@@ -77,28 +77,28 @@ function Map()
 		}
 
 		// マップの表示範囲を計算
-		var curX = data.map_x;
-		var curY = data.map_y;
-		var mapSize = MAP_SIZE * SCALES[data.zoom];
-		var maxW = Math.ceil(curWidth / mapSize);
-		var maxH = Math.ceil(curHeight / mapSize);
+		let curX = data.map_x;
+		let curY = data.map_y;
+		let mapSize = MAP_SIZE * SCALES[data.zoom];
+		let maxW = Math.ceil(curWidth / mapSize);
+		let maxH = Math.ceil(curHeight / mapSize);
 
-		var rev = false;
+		let rev = false;
 
-		var ox = curX - curWidth2;
+		let ox = curX - curWidth2;
 		if (ox < 0) {
 			ox += mapSize * MAP_X;
 		}
-		var mx = ox % mapSize;
-		var px = Math.floor(ox / mapSize);
-		var ex = px + maxW;
+		let mx = ox % mapSize;
+		let px = Math.floor(ox / mapSize);
+		let ex = px + maxW;
 		if (ex >= MAP_X) {
 			ex -= MAP_X;
 			rev = true;
 		}
 
-		var oy = curY - curHeight2;
-		var my, py;
+		let oy = curY - curHeight2;
+		let my, py;
 		if (oy < 0) {
 			my = mapSize - (-oy % mapSize) - 1;
 			py = -Math.floor(-oy / mapSize) - 1;
@@ -106,18 +106,18 @@ function Map()
 			my = oy % mapSize;
 			py = Math.floor(oy / mapSize);
 		}
-		var ey = py + maxH;
+		let ey = py + maxH;
 
 		// マップを表示
-		for (var i = 0; i < MAP_X; i++) {
-			var vi = (i >= px && i <= ex);
+		for (let i = 0; i < MAP_X; i++) {
+			let vi = (i >= px && i <= ex);
 			if (rev) {
 				vi = !vi;
 			}
-			for (var j = 0; j < MAP_Y; j++) {
-				var idx = i + j * MAP_X;
-				var mpLand;
-				var mpTert;
+			for (let j = 0; j < MAP_Y; j++) {
+				let idx = i + j * MAP_X;
+				let mpLand;
+				let mpTert;
 
 				if (vi && j >= py && j <= ey) {
 					mpLand = getMapLandPart(i, j);
@@ -130,11 +130,11 @@ function Map()
 						tertLayer.appendChild(mpTert);
 					}
 
-					var dx = i - px;
+					let dx = i - px;
 					if (dx < 0) {
 						dx += MAP_X;
 					}
-					var dy = j - py;
+					let dy = j - py;
 
 					mpLand.style.left = (dx * mapSize - mx) + 'px';
 					mpLand.style.top = (dy * mapSize - my) + 'px';
@@ -163,11 +163,11 @@ function Map()
 	// 全Regionから、指定した年に含まれるものだけを抽出
 	function update_region_of_year(yr)
 	{
-		var ret = [];
+		let ret = [];
 
-		for (var i = 0; i < region_list.length; i++) {
-			var a = region_list[i];
-			var rg = a[0];
+		for (let i = 0; i < region_list.length; i++) {
+			let a = region_list[i];
+			let rg = a[0];
 			if (rg) {
 				if (rg.node && rg.node.parentNode) {
 					infoLayer.removeChild(rg.node);
@@ -214,15 +214,15 @@ function Map()
 			visible_regions = [];
 			prev_year = data.year;
 		}
-		var scale = SCALES[data.zoom];
-		var mapSize = MAP_SIZE * scale;
-		var curX = data.map_x;
-		var curY = data.map_y;
+		let scale = SCALES[data.zoom];
+		let mapSize = MAP_SIZE * scale;
+		let curX = data.map_x;
+		let curY = data.map_y;
 
-		for (var i = 0; i < regions_this_year.length; i++) {
-			var nt = regions_this_year[i];
-			var px = nt.pos_x * scale - curX;
-			var py = nt.pos_y * scale - curY;
+		for (let i = 0; i < regions_this_year.length; i++) {
+			let nt = regions_this_year[i];
+			let px = nt.pos_x * scale - curX;
+			let py = nt.pos_y * scale - curY;
 
 			if (px > mapSize * 4) {
 				px -= mapSize * 8;
@@ -251,9 +251,9 @@ function Map()
 	// スクロール位置を合わせる
 	function limit_map_center()
 	{
-		var mapSize = MAP_SIZE * SCALES[data.zoom];
-		var maxX = MAP_X * mapSize;
-		var maxY = MAP_Y * mapSize;
+		let mapSize = MAP_SIZE * SCALES[data.zoom];
+		let maxX = MAP_X * mapSize;
+		let maxY = MAP_Y * mapSize;
 
 		// 左右限度を超えた場合、1周回る
 		if (data.map_x < 0) {
@@ -294,7 +294,7 @@ function Map()
 	};
 	this.update_style = function()
 	{
-		for (var i = 0; i < visible_regions.length; i++) {
+		for (let i = 0; i < visible_regions.length; i++) {
 			visible_regions[i].update();
 		}
 	};
@@ -303,10 +303,11 @@ function Map()
 	{
 		mousedown_x = e.clientX;
 		mousedown_y = e.clientY;
+        e.preventDefault();
 	});
 	infoLayer.addEventListener('mousemove', function(e)
 	{
-		if (e.buttons != 0 && mousedown_x !== e.clientX && mousedown_y !== e.clientY) {
+		if (e.buttons != 0 && (mousedown_x !== e.clientX || mousedown_y !== e.clientY)) {
 			// マウスドラッグによるスクロール
 			data.map_x += mousedown_x - e.clientX;
 			data.map_y += mousedown_y - e.clientY;

@@ -2,10 +2,10 @@
 
 function LangButton()
 {
-	var button_ja = document.getElementById('lang-ja');
-	var button_en = document.getElementById('lang-en');
-	var button_zh = document.getElementById('lang-zh');
-	var on_changed_handler = null;
+	const button_ja = document.getElementById('lang-ja');
+	const button_en = document.getElementById('lang-en');
+	const button_zh = document.getElementById('lang-zh');
+	let on_changed_handler = null;
 
 	function update()
 	{

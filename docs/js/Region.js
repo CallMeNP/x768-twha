@@ -1,14 +1,14 @@
 'use strict';
 
-var BOX_WIDTH = 160;
-var REGION_WIDTH = BOX_WIDTH + 48 + 10;
+const BOX_WIDTH = 160;
+const REGION_WIDTH = BOX_WIDTH + 48 + 10;
 
 function Region(a)
 {
-	var region_name = [null, null, null];
-	var region_abbr = [null, null, null];
-	var person_list = [];
-	var flag = null;
+	let region_name = [null, null, null];
+	let region_abbr = [null, null, null];
+	let person_list = [];
+	let flag = null;
 
 	this.pos_x = 0;
 	this.pos_y = 0;
@@ -16,10 +16,10 @@ function Region(a)
 
 	function create_region_box()
 	{
-		var node = document.createElement('div');
+		let node = document.createElement('div');
 		node.classList.add('region');
 
-		var title = document.createElement('div');
+		let title = document.createElement('div');
 		title.classList.add('region-title');
 		node.appendChild(title);
 
@@ -58,12 +58,13 @@ function Region(a)
 
 	this.update_year = function()
 	{
-		var year = data.year;
-		var i, b, title = null;
+		let year = data.year;
+		let title = null;
+		let i;
 
 		// 国名
 		for (i = 3; i < a.length && a[i].length > 3; i++) {
-			b = a[i];
+			let b = a[i];
 			flag = b[2];
 			if (b[3]) {
 				set_default_name(b, 3);
@@ -91,7 +92,7 @@ function Region(a)
 		// 人名
 		person_list = [];
 		for (; i < a.length; i++) {
-			b = a[i];
+			let b = a[i];
 			if (b.length == 3) {
 				set_default_name(b, 0);
 				title = b;
@@ -109,8 +110,8 @@ function Region(a)
 		this.node.style.left = x + 'px';
 		this.node.style.top = (y - 8) + 'px';
 
-		var lang = lang_name_to_id(data.lang);
-		var html = '';
+		let lang = lang_name_to_id(data.lang);
+		let html = '';
 		if (flag && data.zoom >= 1){
 			html = '<img src="sym/' + flag + '.png" alt="">';
 		}
@@ -119,11 +120,11 @@ function Region(a)
 		} else {
 			html += region_abbr[lang];
 		}
-		var n = this.node.childNodes[0];
+		let n = this.node.childNodes[0];
 		n.innerHTML = html;
 
 		if (data.zoom - this.disp_level >= 2) {
-			var body, item;
+			let body;
 			if (this.node.childNodes.length == 2) {
 				body = this.node.childNodes[1];
 				body.innerHTML = '';
@@ -132,12 +133,12 @@ function Region(a)
 				body.classList.add('person-list');
 				this.node.appendChild(body);
 			}
-			for (var i = 0; i < person_list.length; i++) {
-				var a_title = person_list[i][0];
-				var a_person = person_list[i][1];
+			for (let i = 0; i < person_list.length; i++) {
+				let a_title = person_list[i][0];
+				let a_person = person_list[i][1];
 				html = '';
 
-				item = document.createElement('div');
+				let item = document.createElement('div');
 				item.classList.add('person');
 				if (a_person[2]) {
 					html = '<img src="f/' + a_person[2] + '.png" alt="">';

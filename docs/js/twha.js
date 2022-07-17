@@ -7,15 +7,15 @@
     }
 })(function()
 {
-	var screen_width = 0;
-	var screen_height = 0;
-	var resize_timer = -1;
+	const zoom_bar = new ZoomBar();
+	const lang_button = new LangButton();
+	const year_text = new YearText();
+	const year_bar = new YearBar();
+	const map = new Map();
 
-	var zoom_bar = new ZoomBar();
-	var lang_button = new LangButton();
-	var year_text = new YearText();
-	var year_bar = new YearBar();
-	var map = new Map();
+	let screen_width = 0;
+	let screen_height = 0;
+	let resize_timer = -1;
 
 	data.year_clamp = function()
 	{
@@ -30,11 +30,11 @@
 
 	function resize()
 	{
-		var body = document.getElementsByTagName('body')[0];
+		let body = document.getElementsByTagName('body')[0];
 
 		screen_width = body.offsetWidth;
 		screen_height = body.offsetHeight;
-		var canbas_h = screen_height - year_bar.SIZE;
+		let canbas_h = screen_height - year_bar.SIZE;
 
 		map.set_size(screen_width, canbas_h);
 

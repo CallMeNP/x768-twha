@@ -2,9 +2,9 @@
 
 function ZoomBar()
 {
-	var zoom_bar = document.getElementById('scale-zoom');
-	var cursor = document.getElementById('scale-zoom-cursor');
-	var on_changed_handler = null;
+	const zoom_bar = document.getElementById('scale-zoom');
+	const cursor = document.getElementById('scale-zoom-cursor');
+	let on_changed_handler = null;
 
 	// 「つまみ」を動かす
 	function update_cursor()
